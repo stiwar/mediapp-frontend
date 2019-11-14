@@ -18,7 +18,7 @@
 
   <mat-form-field>
     <mat-select placeholder="Medico" [(value)]="idMedicoSeleccionado">
-      <mat-option *ngFor="let m of medicos" [value]="m.idMedico">{{m.nombres }}</mat-option>
+      <mat-option *ngFor="let m of medicos" [value]="m.idMedico">{{m.nombres }} {{m.apellidos}}</mat-option>
     </mat-select>
   </mat-form-field>
 
