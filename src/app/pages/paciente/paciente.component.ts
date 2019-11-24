@@ -51,7 +51,7 @@ export class PacienteComponent implements OnInit {
     this.pacienteService.listarPageable(e.pageIndex, e.pageSize).subscribe(data => {
       this.cantidad = data.totalElements;
       this.dataSource = new MatTableDataSource(data.content);
-      //this.dataSource.paginator = this.paginator;
+      //this.dataSource.paginator = this.paginator; //ya no es necesario porque ya estoy trayendo la data de bloque en bloque
       this.dataSource.sort = this.sort;
     });
   }

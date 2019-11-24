@@ -1,5 +1,9 @@
 import { FormGroup, FormControl } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { ConsultaService } from 'src/app/_service/consulta.service';
+import { FiltroConsulta } from 'src/app/_model/filtroConsulta';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { Consulta } from 'src/app/_model/consulta';
 
 @Component({
   selector: 'app-buscar',
@@ -9,8 +13,12 @@ import { Component, OnInit } from '@angular/core';
 export class BuscarComponent implements OnInit {
 
   form: FormGroup;
+  displayedColumns = ['paciente', 'medico', 'especialidad', 'fecha', 'acciones'];
+  dataSource : MatTableDataSource<Consulta>;
+  @ViewChild(MatPaginator) paginator : MatPaginator;
+  @ViewChild(MatSort) sort : MatSort;
 
-  constructor() { }
+  constructor(private consultaService : ConsultaService) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -21,6 +29,47 @@ export class BuscarComponent implements OnInit {
   }
 
   buscar(){
+
+    let filtro = new FiltroConsulta(this.form.value['dni'], 
+                                    this.form.value['nombreCompleto'], 
+                                    this.form.value['fechaConsulta']);
+
+    filtro.nombreCompleto = filtro.nombreCompleto.toLowerCase();//para enviar siempre en minúsculas al backend.
+
+    if(filtro.fechaConsulta){
+
+      filtro.fechaConsulta.setHours(0);
+      filtro.fechaConsulta.setMinutes(0);
+      filtro.fechaConsulta.setSeconds(0);
+      filtro.fechaConsulta.setMilliseconds(0);
+
+      delete filtro.dni;  //delete es una palabra reservada de JavaScript
+      delete filtro.nombreCompleto;  //delete es una palabra reservada de JavaScript
+
+      this.consultaService.buscar(filtro).subscribe(data => {
+        //datasource
+        this.dataSource = new MatTableDataSource(data);
+      });
+
+    }else{
+      
+      delete filtro.fechaConsulta;
+
+      if(filtro.dni.length === 0){
+        delete filtro.dni;
+      }
+
+      if(filtro.nombreCompleto.length === 0){
+        delete filtro.nombreCompleto;
+      }
+
+      this.consultaService.buscar(filtro).subscribe(data => {
+        //datasource
+        this.dataSource = new MatTableDataSource(data);
+      });
+
+    }
+
     
   }
 
