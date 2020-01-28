@@ -2,8 +2,9 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ConsultaService } from 'src/app/_service/consulta.service';
 import { FiltroConsulta } from 'src/app/_model/filtroConsulta';
-import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { Consulta } from 'src/app/_model/consulta';
+import { DialogoDetalleComponent } from './dialogo-detalle/dialogo-detalle.component';
 
 @Component({
   selector: 'app-buscar',
@@ -18,7 +19,7 @@ export class BuscarComponent implements OnInit {
   @ViewChild(MatPaginator) paginator : MatPaginator;
   @ViewChild(MatSort) sort : MatSort;
 
-  constructor(private consultaService : ConsultaService) { }
+  constructor(private consultaService : ConsultaService, private dialog : MatDialog) { }
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -49,6 +50,9 @@ export class BuscarComponent implements OnInit {
       this.consultaService.buscar(filtro).subscribe(data => {
         //datasource
         this.dataSource = new MatTableDataSource(data);
+
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
       });
 
     }else{
@@ -66,11 +70,20 @@ export class BuscarComponent implements OnInit {
       this.consultaService.buscar(filtro).subscribe(data => {
         //datasource
         this.dataSource = new MatTableDataSource(data);
+
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
       });
 
     }
 
     
+  }
+
+  verDetalle(consulta : Consulta){
+    this.dialog.open(DialogoDetalleComponent,{
+      data:consulta
+    });
   }
 
 }

@@ -67,7 +67,15 @@ export class PacienteEdicionComponent implements OnInit {
     this.paciente.telefono = this.form.value['telefono'];
     this.paciente.email = this.form.value['email'];
 
+    console.log(this.paciente.idPaciente);
+        console.log(this.paciente.nombres);
+        console.log(this.paciente.apellidos);
+        console.log(this.paciente.email);
+        console.log(this.paciente.telefono);
+        console.log(this.paciente.direccion);
+
     if(this.edicion){
+      console.log('en edicion');
       this.pacienteService.modificar(this.paciente).subscribe(()=>{
         this.pacienteService.listar().subscribe(data => {
           this.pacienteService.pacienteCambio.next(data);

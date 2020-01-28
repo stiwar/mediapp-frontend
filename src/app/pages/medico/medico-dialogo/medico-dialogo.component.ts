@@ -27,7 +27,7 @@ export class MedicoDialogoComponent implements OnInit {
   }
 
   operar() {
-    if (this.medico != null && this.medico.idMedico > 0) {
+    if (this.medico != null && this.medico.idMedico > 0) {      
       this.medicoService.modificar(this.medico).subscribe(data => {
         this.medicoService.listar().subscribe(medicos => {
           this.medicoService.medicosCambio.next(medicos);

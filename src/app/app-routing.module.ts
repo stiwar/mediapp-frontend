@@ -10,6 +10,7 @@ import { PacienteComponent } from './pages/paciente/paciente.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MedicoComponent } from './pages/medico/medico.component';
+import { ReporteComponent } from './pages/reporte/reporte.component';
 
 const routes: Routes = [
   {
@@ -33,7 +34,8 @@ const routes: Routes = [
   { path: 'medico', component: MedicoComponent },
   { path: 'consulta', component: ConsultaComponent },
   { path: 'consulta-especial', component: EspecialComponent },
-  { path: 'buscar', component: BuscarComponent }
+  { path: 'buscar', component: BuscarComponent },
+  { path: 'reporte', component: ReporteComponent }
 ];
 
 @NgModule({

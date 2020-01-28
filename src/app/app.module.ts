@@ -18,6 +18,9 @@ import { ExamenEdicionComponent } from './pages/examen/examen-edicion/examen-edi
 import { ConsultaComponent } from './pages/consulta/consulta.component';
 import { EspecialComponent } from './pages/consulta/especial/especial.component';
 import { BuscarComponent } from './pages/buscar/buscar.component';
+import { DialogoDetalleComponent } from './pages/buscar/dialogo-detalle/dialogo-detalle.component';
+import { ReporteComponent } from './pages/reporte/reporte.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -32,9 +35,11 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
     ExamenEdicionComponent,
     ConsultaComponent,
     EspecialComponent,
-    BuscarComponent
+    BuscarComponent,
+    DialogoDetalleComponent,
+    ReporteComponent
   ],
-  entryComponents: [MedicoDialogoComponent],
+  entryComponents: [MedicoDialogoComponent, DialogoDetalleComponent], //Necesario para abrir los modales y que el menú lateral no se dañe y pueda desplegarse correctamente.
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -42,7 +47,8 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
     MaterialModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PdfViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

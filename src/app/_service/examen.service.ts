@@ -3,6 +3,7 @@ import { Examen } from './../_model/examen';
 import { Subject } from 'rxjs';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
+import { ConsultaListaExamenDTO } from '../_model/consultaListaExamenDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,11 @@ export class ExamenService {
 
   eliminar(id: number) {
     return this.http.delete(`${this.url}/${id}`);
+  }
+
+  listarExamenPorConsulta(idConsulta : number){
+
+    return this.http.get<ConsultaListaExamenDTO[]>(`${environment.HOST_URL}/consultaexamenes/${idConsulta}`);
+
   }
 }
