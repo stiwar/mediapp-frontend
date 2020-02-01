@@ -33,4 +33,19 @@ export class ConsultaService {
     });
   }
 
+  guardarArchivo(data: File){
+    let formdata: FormData = new FormData();
+    formdata.append('file',data); //'file' es un apodo para la variable data que llega como argumento al método.
+
+    return this.http.post(`${this.url}/guardarArchivo`, formdata,{
+      responseType: 'text' //es text porque así el back-end retorne un entero (ResponseEntity<Integer>), lo toma como texto, y sino le especifico el tipo de respuesta lo toma como un Json.
+    });
+  }
+
+  leerArchivo(){
+    return this.http.get(`${this.url}/leerArchivo/1`,{ //le pasa el 1 quemado xq no está en el alcance del ejercicio el manejo de imágenes, sepodría hacer de manera dinámica recibiendo el id de la imagen como parámetro
+      responseType: 'blob'
+    });
+  }
+
 }

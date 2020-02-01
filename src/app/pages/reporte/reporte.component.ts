@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {Chart} from 'chart.js';
 import { ConsultaService } from 'src/app/_service/consulta.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { from } from 'rxjs';
 
 @Component({
   selector: 'app-reporte',
@@ -14,6 +13,11 @@ export class ReporteComponent implements OnInit {
   chart: any;  //es para la referencia al canvas y es de tipo any xq en typeScript no tengo una variable de tipo Canvas.
   tipo: string;
   pdfSrc: string = '';
+  labelFile: string;
+  selectedFiles: FileList; //imágenes seleccionadas para subir
+  currentFileUpload: File;
+  imagenData: any;
+  imagenEstado: boolean = false;
 
   constructor(private consultaService: ConsultaService, private sanitization : DomSanitizer) { }
 
@@ -21,9 +25,23 @@ export class ReporteComponent implements OnInit {
     this.tipo = 'line';
     this.dibujar();
 
-    /*this.consultaService.leerArchivo().subscribe(data => {
+    this.consultaService.leerArchivo().subscribe(data => {
       this.convertir(data);
-    });*/
+    });
+  }
+
+  convertir(data: any){
+    let reader = new FileReader();
+    reader.readAsDataURL(data);
+    reader.onloadend = () => {
+      let x = reader.result;
+      //console.log(x); //imagen en base64 (inseguro)
+      this.setear(x);
+    };
+  }
+
+  setear(x: any){//para englobar la data como segura (sanitizar)
+    this.imagenData = this.sanitization.bypassSecurityTrustResourceUrl(x);
   }
 
   dibujar() {
@@ -106,7 +124,7 @@ export class ReporteComponent implements OnInit {
       a.click(); //simular el click del usuario
     });
   }
-/*
+
   selectFile(e: any) {
     //console.log(e.target.files);
     this.labelFile = e.target.files[0].name;
@@ -118,7 +136,7 @@ export class ReporteComponent implements OnInit {
 
     this.consultaService.guardarArchivo(this.currentFileUpload).subscribe(data => {
       console.log(data);
-      this.selectedFiles = undefined;
+      this.selectedFiles = undefined; //limpiar lista
     })
   }
 
@@ -128,5 +146,5 @@ export class ReporteComponent implements OnInit {
     }else{
       this.imagenEstado = false;
     }    
-  }*/
+  }
 }
