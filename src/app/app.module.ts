@@ -21,6 +21,17 @@ import { BuscarComponent } from './pages/buscar/buscar.component';
 import { DialogoDetalleComponent } from './pages/buscar/dialogo-detalle/dialogo-detalle.component';
 import { ReporteComponent } from './pages/reporte/reporte.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import {JwtModule} from '@auth0/angular-jwt';
+import { LoginComponent } from './login/login.component';
+import { environment } from 'src/environments/environment';
+
+//el siguiente método proporciona un mecanismo para obtener el token
+export function tokenGetter(){
+  let tk = JSON.parse(sessionStorage.getItem(environment.TOKEN_NAME));
+  let token = tk != null ? tk.access_token : '';
+
+  return token;
+}
 
 @NgModule({
   declarations: [
@@ -37,7 +48,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     EspecialComponent,
     BuscarComponent,
     DialogoDetalleComponent,
-    ReporteComponent
+    ReporteComponent,
+    LoginComponent
   ],
   entryComponents: [MedicoDialogoComponent, DialogoDetalleComponent], //Necesario para abrir los modales y que el menú lateral no se dañe y pueda desplegarse correctamente.
   imports: [
@@ -48,7 +60,14 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    PdfViewerModule
+    PdfViewerModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,//especifica cómo se van a obtener los tokens
+        whitelistedDomains: ['localhost:8080'], //esta librería le pasa el token automáticamente en el header a todo lo que pertenezca a este dominio
+        blacklistedRoutes: ['localhost:8080/login/enviarCorreo'] //aquí van los servicios que no necesitan tokens
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -11,6 +11,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MedicoComponent } from './pages/medico/medico.component';
 import { ReporteComponent } from './pages/reporte/reporte.component';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
   {
@@ -35,7 +36,10 @@ const routes: Routes = [
   { path: 'consulta', component: ConsultaComponent },
   { path: 'consulta-especial', component: EspecialComponent },
   { path: 'buscar', component: BuscarComponent },
-  { path: 'reporte', component: ReporteComponent }
+  { path: 'reporte', component: ReporteComponent },
+  //login
+  {path: 'login', component: LoginComponent},
+  { path: '', redirectTo: 'login',  pathMatch: 'full'} //pathMatch: 'full' significa que le va a agregar localhost:4200, es decir, el dominio, sino buscaria 'login' sin el dominio previo y lanzaría un error
 ];
 
 @NgModule({
