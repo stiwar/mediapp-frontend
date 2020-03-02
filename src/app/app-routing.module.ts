@@ -12,33 +12,37 @@ import { Routes, RouterModule } from '@angular/router';
 import { MedicoComponent } from './pages/medico/medico.component';
 import { ReporteComponent } from './pages/reporte/reporte.component';
 import { LoginComponent } from './login/login.component';
+import { GuardService } from './_service/guard.service';
 
 const routes: Routes = [
   {
     path: 'paciente', component: PacienteComponent, children: [
       { path: 'nuevo', component: PacienteEdicionComponent },
       { path: 'edicion/:id', component: PacienteEdicionComponent }
-    ]
+    ], 
+    canActivate: [GuardService]//es para proteger las rutas desde el front
   },
   {
     path: 'especialidad', component: EspecialidadComponent, children: [
       { path: 'nuevo', component: EspecialidadEdicionComponent },
       { path: 'edicion/:id', component: EspecialidadEdicionComponent }
-    ]
+    ], 
+    canActivate: [GuardService]
   },
   {
     path: 'examen', component: ExamenComponent, children: [
       { path: 'nuevo', component: ExamenEdicionComponent },
       { path: 'edicion/:id', component: ExamenEdicionComponent }
-    ]
+    ], 
+    canActivate: [GuardService]
   },
-  { path: 'medico', component: MedicoComponent },
-  { path: 'consulta', component: ConsultaComponent },
-  { path: 'consulta-especial', component: EspecialComponent },
-  { path: 'buscar', component: BuscarComponent },
-  { path: 'reporte', component: ReporteComponent },
+  { path: 'medico', component: MedicoComponent, canActivate: [GuardService] },
+  { path: 'consulta', component: ConsultaComponent, canActivate: [GuardService] },
+  { path: 'consulta-especial', component: EspecialComponent, canActivate: [GuardService] },
+  { path: 'buscar', component: BuscarComponent, canActivate: [GuardService] },
+  { path: 'reporte', component: ReporteComponent, canActivate: [GuardService] },
   //login
-  {path: 'login', component: LoginComponent},
+  {path: 'login', component: LoginComponent},//el login no se debe proteger
   { path: '', redirectTo: 'login',  pathMatch: 'full'} //pathMatch: 'full' significa que le va a agregar localhost:4200, es decir, el dominio, sino buscaria 'login' sin el dominio previo y lanzaría un error
 ];
 
