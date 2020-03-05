@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PacienteComponent } from './pages/paciente/paciente.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { PacienteEdicionComponent } from './pages/paciente/paciente-edicion/paciente-edicion.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MedicoComponent } from './pages/medico/medico.component';
@@ -24,6 +24,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import {JwtModule} from '@auth0/angular-jwt';
 import { LoginComponent } from './login/login.component';
 import { environment } from 'src/environments/environment';
+import { Not401Component } from './pages/not401/not401.component';
+import { ServerErrorsInterceptor } from './_shared/server-errors.interceptor';
 
 //el siguiente método proporciona un mecanismo para obtener el token
 export function tokenGetter(){
@@ -49,7 +51,8 @@ export function tokenGetter(){
     BuscarComponent,
     DialogoDetalleComponent,
     ReporteComponent,
-    LoginComponent
+    LoginComponent,
+    Not401Component
   ],
   entryComponents: [MedicoDialogoComponent, DialogoDetalleComponent], //Necesario para abrir los modales y que el menú lateral no se dañe y pueda desplegarse correctamente.
   imports: [
@@ -69,7 +72,11 @@ export function tokenGetter(){
       }
     })
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: ServerErrorsInterceptor,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

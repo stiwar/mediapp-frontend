@@ -30,6 +30,15 @@
         <mat-sidenav #sidenav style="width: 200px">
             <img src="assets/mitocode.png" width="128" style="margin-left: 20px">
 
+            <div *ngFor="let m of menus">
+                <button mat-menu-item (click)="sidenav.toggle()" routerLink="{{m.url}}" style="cursor: pointer">
+                    <mat-icon>{{m.icono}}</mat-icon>
+                    <span>{{m.nombre}}</span>
+                </button>
+                <mat-divider></mat-divider>
+            </div>
+
+        <!--
             <button mat-menu-item (click)="sidenav.toggle()" routerLink="/buscar" style="cursor: pointer">
                 <mat-icon>search</mat-icon>
                 <span>Buscar</span>
@@ -69,6 +78,7 @@
                 <mat-icon>assessment</mat-icon>
                 <span>Reportes</span>
             </button>
+        -->
         </mat-sidenav>
         <mat-sidenav-content>
             <router-outlet></router-outlet>
