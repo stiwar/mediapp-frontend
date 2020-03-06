@@ -1,7 +1,7 @@
 import { MatPaginatorImpl } from './../_shared/mat-paginator';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MAT_DATE_LOCALE, MatNativeDateModule, MatDatepickerModule, MatExpansionModule, MatSelectModule, MatSnackBarModule, MatButtonModule, MatToolbarModule, MatTableModule, MatPaginatorModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSortModule, MatPaginatorIntl, MatCardModule, MatMenuModule, MatSidenavModule, MatDividerModule, MatDialogModule, MatAutocompleteModule } from '@angular/material';
+import { MAT_DATE_LOCALE, MatNativeDateModule, MatDatepickerModule, MatExpansionModule, MatSelectModule, MatSnackBarModule, MatButtonModule, MatToolbarModule, MatTableModule, MatPaginatorModule, MatIconModule, MatFormFieldModule, MatInputModule, MatSortModule, MatPaginatorIntl, MatCardModule, MatMenuModule, MatSidenavModule, MatDividerModule, MatDialogModule, MatAutocompleteModule, MatProgressBarModule } from '@angular/material';
 
 @NgModule({
   declarations: [],
@@ -25,7 +25,8 @@ import { MAT_DATE_LOCALE, MatNativeDateModule, MatDatepickerModule, MatExpansion
     MatDatepickerModule,
     MatNativeDateModule,
     MatExpansionModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatProgressBarModule
   ],
   exports: [
     MatButtonModule,
@@ -46,7 +47,8 @@ import { MAT_DATE_LOCALE, MatNativeDateModule, MatDatepickerModule, MatExpansion
     MatDatepickerModule,
     MatNativeDateModule,
     MatExpansionModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatProgressBarModule
   ],
   providers: [
     { provide: MatPaginatorIntl, useClass: MatPaginatorImpl},

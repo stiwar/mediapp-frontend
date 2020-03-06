@@ -36,4 +36,10 @@ export class LoginService {
     });
   }
 
+  enviarCorreo(correo: string){
+    return this.http.post<number>(`${environment.HOST_URL}/login/enviarCorreo`, correo, {
+      headers: new HttpHeaders().set('Content-Type', 'text/plain')//es necesario especificar que se retorna un entero xq desde Angular 4.3, HttpClient asume por defecto que la respuesta es un jSon
+    });
+  }
+
 }

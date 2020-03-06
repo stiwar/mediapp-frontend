@@ -14,6 +14,7 @@ import { ReporteComponent } from './pages/reporte/reporte.component';
 import { LoginComponent } from './login/login.component';
 import { GuardService } from './_service/guard.service';
 import { Not401Component } from './pages/not401/not401.component';
+import { RecuperarComponent } from './login/recuperar/recuperar.component';
 
 const routes: Routes = [
   {
@@ -43,9 +44,10 @@ const routes: Routes = [
   { path: 'buscar', component: BuscarComponent, canActivate: [GuardService] },
   { path: 'reporte', component: ReporteComponent, canActivate: [GuardService] },
   //login
-  {path: 'not-401', component: Not401Component},
-  {path: 'login', component: LoginComponent},//el login no se debe proteger
+  { path: 'not-401', component: Not401Component},
+  { path: 'login', component: LoginComponent},//el login no se debe proteger
   { path: '', redirectTo: 'login',  pathMatch: 'full'} //pathMatch: 'full' significa que le va a agregar localhost:4200, es decir, el dominio, sino buscaria 'login' sin el dominio previo y lanzaría un error
+  { path: 'recuperar', component: RecuperarComponent }
 ];
 
 @NgModule({
