@@ -46,7 +46,7 @@ const routes: Routes = [
   //login
   { path: 'not-401', component: Not401Component},
   { path: 'login', component: LoginComponent},//el login no se debe proteger
-  { path: '', redirectTo: 'login',  pathMatch: 'full'} //pathMatch: 'full' significa que le va a agregar localhost:4200, es decir, el dominio, sino buscaria 'login' sin el dominio previo y lanzaría un error
+  { path: '', redirectTo: 'login',  pathMatch: 'full'}, //pathMatch: 'full' significa que le va a agregar localhost:4200, es decir, el dominio, sino buscaria 'login' sin el dominio previo y lanzaría un error
   { path: 'recuperar', component: RecuperarComponent }
 ];
 
