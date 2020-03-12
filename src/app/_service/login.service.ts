@@ -42,4 +42,14 @@ export class LoginService {
     });
   }
 
+  verificarTokenReset(token: string) {  //verificar si el token es válido aún
+    return this.http.get<number>(`${environment.HOST_URL}/login/restablecer/verificar/${token}`);
+  }
+
+  restablecer(token: string, clave: string) {
+    return this.http.post<number>(`${environment.HOST_URL}/login/restablecer/${token}`, clave, {
+      headers: new HttpHeaders().set('Content-Type', 'text/plain')
+    });
+  }
+
 }

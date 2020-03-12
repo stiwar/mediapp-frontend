@@ -27,6 +27,7 @@ import { environment } from 'src/environments/environment';
 import { Not401Component } from './pages/not401/not401.component';
 import { ServerErrorsInterceptor } from './_shared/server-errors.interceptor';
 import { RecuperarComponent } from './login/recuperar/recuperar.component';
+import { TokenComponent } from './login/recuperar/token/token.component';
 
 //el siguiente método proporciona un mecanismo para obtener el token
 export function tokenGetter(){
@@ -54,7 +55,8 @@ export function tokenGetter(){
     ReporteComponent,
     LoginComponent,
     Not401Component,
-    RecuperarComponent
+    RecuperarComponent,
+    TokenComponent
   ],
   entryComponents: [MedicoDialogoComponent, DialogoDetalleComponent], //Necesario para abrir los modales y que el menú lateral no se dañe y pueda desplegarse correctamente.
   imports: [
