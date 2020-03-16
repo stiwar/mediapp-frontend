@@ -72,7 +72,7 @@ export function tokenGetter(){
       config: {
         tokenGetter: tokenGetter,//especifica cómo se van a obtener los tokens
         whitelistedDomains: ['localhost:8080'], //esta librería le pasa el token automáticamente en el header a todo lo que pertenezca a este dominio
-        blacklistedRoutes: ['localhost:8080/login/enviarCorreo'] //aquí van los servicios que no necesitan tokens
+        blacklistedRoutes: ['http://localhost:8080/login/enviarCorreo'] //aquí van los servicios que no necesitan tokens, SIEMPRE VA http:// según el instructor (consultar si es cierto)
       }
     })
   ],

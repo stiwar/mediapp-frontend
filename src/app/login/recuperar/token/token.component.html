@@ -1,6 +1,5 @@
 <mat-toolbar *ngIf="!tokenValido">
-  La petición no es válida o ha expirado :(
-</mat-toolbar>
+  La petición no es válida o ha expirado :(</mat-toolbar>
 
 <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="tokenValido">
   <div class="example-container">
