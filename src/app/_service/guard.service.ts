@@ -57,7 +57,8 @@ export class GuardService implements CanActivate{
 
             let cont = 0;
             for (let m of data) {
-              if (m.url === url) {
+              //if (m.url === url) {//no funciona correctamente al momento de refrescar un formulario de actualización
+              if ( url.startsWith(m.url) ) {
                 cont++;
                 break;
               }

@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(private loginService: LoginService, private menuService: MenuService, private router: Router) { }
 
   ngOnInit() {
+    //hará la redirección a la página principal siempre y cuando esté logueado, caso contrario el guard botará al login
+    this.router.navigate(['paciente']);
   }
 
   ngAfterViewInit(){

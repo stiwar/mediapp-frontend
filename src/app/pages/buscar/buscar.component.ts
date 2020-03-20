@@ -13,6 +13,7 @@ import { DialogoDetalleComponent } from './dialogo-detalle/dialogo-detalle.compo
 })
 export class BuscarComponent implements OnInit {
 
+  maxFecha = new Date();
   form: FormGroup;
   displayedColumns = ['paciente', 'medico', 'especialidad', 'fecha', 'acciones'];
   dataSource : MatTableDataSource<Consulta>;
