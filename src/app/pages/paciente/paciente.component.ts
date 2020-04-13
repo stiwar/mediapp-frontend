@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { PacienteService } from 'src/app/_service/paciente.service';
-import { MatTableDataSource, MatTable, MatSort, MatPaginator, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator, MatSnackBar } from '@angular/material';
 import { Paciente } from 'src/app/_model/paciente';
 
 @Component({

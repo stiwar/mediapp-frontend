@@ -75,7 +75,7 @@ export class PacienteEdicionComponent implements OnInit {
         console.log(this.paciente.direccion);
 
     if(this.edicion){
-      console.log('en edicion');
+
       this.pacienteService.modificar(this.paciente).subscribe(()=>{
         this.pacienteService.listar().subscribe(data => {
           this.pacienteService.pacienteCambio.next(data);

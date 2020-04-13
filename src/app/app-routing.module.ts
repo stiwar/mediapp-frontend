@@ -16,6 +16,8 @@ import { GuardService } from './_service/guard.service';
 import { Not401Component } from './pages/not401/not401.component';
 import { RecuperarComponent } from './login/recuperar/recuperar.component';
 import { TokenComponent } from './login/recuperar/token/token.component';
+import { SignosComponent } from './pages/signos/signos.component';
+import { SignosEdicionComponent } from './pages/signos/signos-edicion/signos-edicion.component';
 
 const routes: Routes = [
   {
@@ -44,6 +46,13 @@ const routes: Routes = [
   { path: 'consulta-especial', component: EspecialComponent, canActivate: [GuardService] },
   { path: 'buscar', component: BuscarComponent, canActivate: [GuardService] },
   { path: 'reporte', component: ReporteComponent, canActivate: [GuardService] },
+  { 
+    path: 'signo', component: SignosComponent, children: [
+      {path: 'nuevo', component: SignosEdicionComponent},
+      {path: 'edicion/:id', component: SignosEdicionComponent}
+    ], 
+    canActivate: [GuardService]
+  },
   //login
   { path: 'not-401', component: Not401Component},
   { path: 'login', component: LoginComponent},//el login no se debe proteger

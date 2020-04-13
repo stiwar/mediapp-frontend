@@ -28,6 +28,8 @@ import { Not401Component } from './pages/not401/not401.component';
 import { ServerErrorsInterceptor } from './_shared/server-errors.interceptor';
 import { RecuperarComponent } from './login/recuperar/recuperar.component';
 import { TokenComponent } from './login/recuperar/token/token.component';
+import { SignosComponent } from './pages/signos/signos.component';
+import { SignosEdicionComponent } from './pages/signos/signos-edicion/signos-edicion.component';
 
 //el siguiente método proporciona un mecanismo para obtener el token
 export function tokenGetter(){
@@ -56,7 +58,9 @@ export function tokenGetter(){
     LoginComponent,
     Not401Component,
     RecuperarComponent,
-    TokenComponent
+    TokenComponent,
+    SignosComponent,
+    SignosEdicionComponent
   ],
   entryComponents: [MedicoDialogoComponent, DialogoDetalleComponent], //Necesario para abrir los modales y que el menú lateral no se dañe y pueda desplegarse correctamente.
   imports: [

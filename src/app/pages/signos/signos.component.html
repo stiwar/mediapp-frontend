@@ -1,0 +1,66 @@
+<mat-toolbar>Signos de Pacientes</mat-toolbar>
+
+<router-outlet></router-outlet>
+
+<div class="example-container mat-elevation-z8" *ngIf="route.children.length === 0">    
+
+<div class="example-header">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar signo">
+  </mat-form-field>
+</div>
+
+<mat-table [dataSource]="dataSource" matSort>
+
+  <ng-container matColumnDef="idSigno">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.signo.idSigno}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="paciente">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Paciente </mat-header-cell>
+    <mat-cell *matCellDef="let row">{{row.nombrePacienteCompleto}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="fecha">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.signo.fecha | date: "dd/MM/y h:mm:ss"}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="temperatura">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Temperatura </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.signo.temperatura}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="pulso">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Pulso </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.signo.pulso}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="ritmoRespiratorio">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> Ritmo Respiratorio </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{row.signo.ritmoRespiratorio}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="acciones">
+    <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <button mat-button color="primary" [routerLink]="['edicion', row.signo.idSigno]">Actualizar</button>
+      <button mat-button color="accent" (click)="eliminarSigno(row.signo.idSigno)">Eliminar</button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  
+</mat-table>
+
+<mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" [length]="cantidadRegistros" (page)="cambiarPagina($event)"></mat-paginator>
+
+</div>
+
+<button mat-fab color="accent" style="float: right" routerLink="/signo/nuevo">
+  <mat-icon>create</mat-icon>
+</button>
+
+
