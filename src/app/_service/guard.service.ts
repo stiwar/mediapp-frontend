@@ -56,6 +56,10 @@ export class GuardService implements CanActivate{
           this.menuService.menuCambio.next(data);
 
             let cont = 0;
+
+            if(url === '/perfil'){
+              ++cont;
+            }
             for (let m of data) {
               //if (m.url === url) {//no funciona correctamente al momento de refrescar un formulario de actualización
               if ( url.startsWith(m.url) ) {

@@ -1,0 +1,17 @@
+.example-card {
+    max-width: 400px;
+}
+  
+.example-header-image {
+    background-image: url('../../../assets/mitocode.svg');
+    background-size: cover;
+}
+
+.padding-div {
+    padding: 24px;
+}
+
+.center-card-text {
+    text-align: center;
+}
+  

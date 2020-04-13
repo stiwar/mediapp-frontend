@@ -18,6 +18,7 @@ import { RecuperarComponent } from './login/recuperar/recuperar.component';
 import { TokenComponent } from './login/recuperar/token/token.component';
 import { SignosComponent } from './pages/signos/signos.component';
 import { SignosEdicionComponent } from './pages/signos/signos-edicion/signos-edicion.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 const routes: Routes = [
   {
@@ -54,6 +55,7 @@ const routes: Routes = [
     canActivate: [GuardService]
   },
   //login
+  { path: 'perfil', component: PerfilComponent, canActivate: [GuardService] },
   { path: 'not-401', component: Not401Component},
   { path: 'login', component: LoginComponent},//el login no se debe proteger
   { path: '', redirectTo: 'login',  pathMatch: 'full'}, //pathMatch: 'full' significa que le va a agregar localhost:4200, es decir, el dominio, sino buscaria 'login' sin el dominio previo y lanzaría un error

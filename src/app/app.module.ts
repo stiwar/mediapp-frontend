@@ -30,6 +30,7 @@ import { RecuperarComponent } from './login/recuperar/recuperar.component';
 import { TokenComponent } from './login/recuperar/token/token.component';
 import { SignosComponent } from './pages/signos/signos.component';
 import { SignosEdicionComponent } from './pages/signos/signos-edicion/signos-edicion.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 //el siguiente método proporciona un mecanismo para obtener el token
 export function tokenGetter(){
@@ -60,7 +61,8 @@ export function tokenGetter(){
     RecuperarComponent,
     TokenComponent,
     SignosComponent,
-    SignosEdicionComponent
+    SignosEdicionComponent,
+    PerfilComponent
   ],
   entryComponents: [MedicoDialogoComponent, DialogoDetalleComponent], //Necesario para abrir los modales y que el menú lateral no se dañe y pueda desplegarse correctamente.
   imports: [
